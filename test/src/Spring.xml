@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+           default-init-method="init" default-destroy-method="destroy">
+<bean id="triangle" class ="org.test.Triangle" >
+	<!--   <property name="A" ref="p1"/>
+	 	<constructor-arg value="isosceles"/> -->
+	<property name="pointA" ref ="center"/>
+	<property name="pointB">
+		<bean  class = "org.test.Point">
+			<property name="x" value="10"/>
+			<property name="y" value="30"/>
+		</bean>
+	</property>
+	<property name="pointC">
+		<bean  class = "org.test.Point">
+			<property name="x" value="10"/>
+			<property name="y" value="50"/>
+		</bean>
+	</property>
+
+</bean>
+<bean id="messageSource"  class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames">
+		<list>
+		<value>messages</value>
+		</list>
+	</property>
+</bean>
+
+<bean id ="center" class = "org.test.Point">
+	<!-- <qualifier value="cicle related"/>  for autowiring-->
+	<property name="x" value="10"/>
+	<property name="y" value="100"/>
+</bean>
+<bean id ="p2" class = "org.test.Point">
+	<property name="x" value="100"/>
+	<property name="y" value="100"/>
+</bean>
+<bean id ="p3" class = "org.test.Point">
+	<property name="x" value="100"/>
+	<property name="y" value="10"/>
+</bean>
+<bean id="circle" class ="org.test.Circle" >
+<property name="center" ref="center"/> 	
+</bean>
+<bean id="square" class="org.test.Square">
+	<property name="s1" ref="center"></property>
+	<property name="s2" ref="p2"/>
+	<property name="s3" ref="p3"/>
+	<property name="s4">
+		<bean class="org.test.Point">
+			<property name="x" value="9"/>
+			<property name="y" value="88"/>
+		</bean>
+	</property>
+</bean>
+<bean id="event" class="org.test.MyEventListener"/>
+</beans>
+
+<!-- <bean class ="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
+
+<!-- <bean id="circle" class ="org.test.Circle" >
+<bean class ="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/> -->
+<!-- <bean id="eventListner" class="org.springframework.context.ApplicationListner">
+</bean> -->
