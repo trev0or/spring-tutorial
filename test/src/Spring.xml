@@ -25,6 +25,24 @@
 	</property>
 
 </bean>
+<bean id="tri" class ="org.test.Tri" >
+	<!--   <property name="A" ref="p1"/>
+	 	<constructor-arg value="isosceles"/> -->
+	<property name="pointA" ref ="center"/>
+	<property name="pointB">
+		<bean  class = "org.test.Point">
+			<property name="x" value="10"/>
+			<property name="y" value="30"/>
+		</bean>
+	</property>
+	<property name="pointC">
+		<bean  class = "org.test.Point">
+			<property name="x" value="10"/>
+			<property name="y" value="50"/>
+		</bean>
+	</property>
+
+</bean>
 <bean id="messageSource"  class="org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basenames">
 		<list>
